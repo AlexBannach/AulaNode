@@ -1,1 +1,0 @@
-http://localhost:3500/api/users?name=Alex&password=123456
