@@ -23,6 +23,27 @@ async function CreateUser ( req, res) {
     }
 }
 
+async function GetAllUsers(req, res){
+    try {
+
+        const connection = await mysql.createConnection(databaseConfig);
+
+        const [users] = await connection.query('SELECT * FROM user');
+
+        res.status(200).json(users);
+        
+    } catch (error) {
+        res.status(500).send(
+            {
+                message: 'Error getting users!',
+                body: error.message,
+            }
+        )
+        
+    }
+}
+
 module.exports = {
     CreateUser,
+    GetAllUsers,
 }
